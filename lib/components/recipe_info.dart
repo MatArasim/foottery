@@ -9,22 +9,16 @@ class RecipeInfo extends StatefulWidget {
 
   final String name;
   final String imgUrl;
-  
 
   @override
   State<RecipeInfo> createState() => _RecipeInfoState();
 }
 
 class _RecipeInfoState extends State<RecipeInfo> {
-
-
   @override
-  void initState()
-  {
+  void initState() {
     super.initState();
   }
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +35,9 @@ class _RecipeInfoState extends State<RecipeInfo> {
                 style: GoogleFonts.nunito(fontSize: 30),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(width: 10,),
+              SizedBox(
+                width: 10,
+              ),
             ],
           ),
         ),

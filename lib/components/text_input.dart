@@ -3,13 +3,15 @@
 import 'package:flutter/material.dart';
 
 class TextInput extends StatelessWidget {
-  const TextInput({super.key, required this.controller, required this.hintText, required this.obscureText});
-  
+  const TextInput(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      required this.obscureText});
+
   final controller;
   final String hintText;
   final bool obscureText;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +22,12 @@ class TextInput extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade600)
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.green)
-          ),
+              borderSide: BorderSide(color: Colors.grey.shade600)),
+          focusedBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.green)),
           hintText: hintText,
         ),
       ),
-      );
+    );
   }
 }

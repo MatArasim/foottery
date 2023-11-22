@@ -36,8 +36,9 @@ class HistoryListPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 5),
               child: Column(
                 children: [
-                  Text('History',
-                  style: GoogleFonts.nunito(fontSize: 30),
+                  Text(
+                    'History',
+                    style: GoogleFonts.nunito(fontSize: 30),
                     textAlign: TextAlign.center,
                   ),
                   Expanded(
@@ -45,12 +46,18 @@ class HistoryListPage extends StatelessWidget {
                           itemCount: history.length,
                           itemBuilder: (context, index) {
                             Recipe recipe = history[index];
-                            return HistoryListTile(recipe: recipe,onTap: () {
-                               Navigator.push(context, MaterialPageRoute(builder: (context) => SelectedRecipePage(recipe: recipe)));
-                            },);
-                          }
-                          )
-                          )
+                            return HistoryListTile(
+                              recipe: recipe,
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SelectedRecipePage(
+                                                recipe: recipe)));
+                              },
+                            );
+                          }))
                 ],
               ),
             ),

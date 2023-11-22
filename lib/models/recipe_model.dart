@@ -25,7 +25,6 @@ class Recipe {
         instruction: data['instruction'],
         imgUrl: data['imgUrl'].toString(),
         ingredients: List<String>.from(data['ingredients']),
-        measure: List<String>.from(data['measure'])
-        );
+        measure: List<String>.from(data['measure']));
   }
 }

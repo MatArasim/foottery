@@ -16,18 +16,13 @@ class BigButton extends StatelessWidget {
         padding: EdgeInsets.all(20),
         margin: EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
-          color: Colors.lightGreen,
-          borderRadius: BorderRadius.circular(5)
-        ),
+            color: Colors.lightGreen, borderRadius: BorderRadius.circular(5)),
         child: Center(
           child: Text(
             buttonText,
             style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 25
-            ),
-            ),
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
+          ),
         ),
       ),
     );

@@ -31,7 +31,10 @@ class HistoryListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(recipe.imgUrl),
               ),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white,),
+              trailing: Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              ),
             )),
       ),
     );

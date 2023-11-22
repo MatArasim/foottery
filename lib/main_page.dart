@@ -14,45 +14,42 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
   List<Recipe> history = [];
 
-  callback(List<Recipe> loadedRecpies){
+  callback(List<Recipe> loadedRecpies) {
     setState(() {
-  history = loadedRecpies;
-});
+      history = loadedRecpies;
+    });
   }
 
   int _selectedIndex = 0;
 
-    void _navBottomBar(int index)
-    {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
-    
-    final List<Widget> _pages = [
-      RecipePage(), 
-      HistoryListPage(),
-      LoginPage(),
-    ];
+  void _navBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
-
+  final List<Widget> _pages = [
+    RecipePage(),
+    HistoryListPage(),
+    LoginPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.lightGreen,
-        currentIndex: _selectedIndex,
-        type: BottomNavigationBarType.fixed,
-        onTap: _navBottomBar,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
-      ]),
+          selectedItemColor: Colors.lightGreen,
+          currentIndex: _selectedIndex,
+          type: BottomNavigationBarType.fixed,
+          onTap: _navBottomBar,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.history), label: 'History'),
+          ]),
     );
   }
 }

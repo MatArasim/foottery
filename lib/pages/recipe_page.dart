@@ -19,9 +19,7 @@ class RecipePage extends StatefulWidget {
 }
 
 class _RecipePageState extends State<RecipePage> {
-
   final List<Recipe> recipes = [];
-  
 
   Future getRequest() async {
     List<String> ingredients = [];
@@ -42,13 +40,13 @@ class _RecipePageState extends State<RecipePage> {
       }
     }
     var recipe = Recipe(
-        id: data["idMeal"],
-        name: data['strMeal'],
-        instruction: data['strInstructions'],
-        imgUrl: data['strMealThumb'],
-        ingredients: ingredients,
-        measure: measure,
-        );
+      id: data["idMeal"],
+      name: data['strMeal'],
+      instruction: data['strInstructions'],
+      imgUrl: data['strMealThumb'],
+      ingredients: ingredients,
+      measure: measure,
+    );
     recipes.clear();
     recipes.add(recipe);
     FirebaseFirestore.instance.collection('recipies').add({
@@ -62,7 +60,7 @@ class _RecipePageState extends State<RecipePage> {
       'liked': recipes.length,
     });
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -109,8 +107,10 @@ class _RecipePageState extends State<RecipePage> {
                           ingredients: recipes.last.ingredients,
                           measures: recipes.last.measure),
                       Padding(
-                        padding: EdgeInsetsDirectional.only(top: 10,bottom: 75),
-                        child: RecipeInstruction(instruction: recipes.last.instruction))
+                          padding:
+                              EdgeInsetsDirectional.only(top: 10, bottom: 75),
+                          child: RecipeInstruction(
+                              instruction: recipes.last.instruction))
                     ]);
                   } else {
                     return Center(

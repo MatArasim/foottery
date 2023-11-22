@@ -38,8 +38,8 @@ class SelectedRecipePage extends StatelessWidget {
             Expanded(
               child: TabBarView(children: [
                 RecipeInstruction(instruction: recipe.instruction),
-                RecipeIngredients(ingredients: recipe.ingredients, measures: recipe.measure),
-                
+                RecipeIngredients(
+                    ingredients: recipe.ingredients, measures: recipe.measure),
               ]),
             )
           ],
