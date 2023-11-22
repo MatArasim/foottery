@@ -2,6 +2,8 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foottery/components/recipe_info.dart';
 import 'package:foottery/components/recipe_ingredients.dart';
@@ -9,16 +11,18 @@ import 'package:foottery/components/recipe_instruction.dart';
 import 'package:foottery/models/recipe_model.dart';
 import 'package:http/http.dart' as http;
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class RecipePage extends StatefulWidget {
+  const RecipePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<RecipePage> createState() => _RecipePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RecipePageState extends State<RecipePage> {
 
- final List<Recipe> recipes = [];
+  final List<Recipe> recipes = [];
+  
+
   Future getRequest() async {
     List<String> ingredients = [];
     List<String> measure = [];
@@ -26,7 +30,6 @@ class _HomePageState extends State<HomePage> {
     var response =
         await http.get(Uri.https('themealdb.com', '/api/json/v1/1/random.php'));
     var data = jsonDecode(response.body.toString())['meals'][0];
-
     for (var i = 1; i <= 20; i++) {
       if (data['strIngredient$i'] != ' ' &&
           data['strIngredient$i'] != '' &&
@@ -39,15 +42,27 @@ class _HomePageState extends State<HomePage> {
       }
     }
     var recipe = Recipe(
+        id: data["idMeal"],
         name: data['strMeal'],
         instruction: data['strInstructions'],
         imgUrl: data['strMealThumb'],
         ingredients: ingredients,
-        measure: measure);
+        measure: measure,
+        );
     recipes.clear();
     recipes.add(recipe);
+    FirebaseFirestore.instance.collection('recipies').add({
+      'email': FirebaseAuth.instance.currentUser!.email,
+      'id': recipes.last.id,
+      'imgUrl': recipes.last.imgUrl,
+      'name': recipes.last.name,
+      'ingredients': recipes.last.ingredients,
+      'measure': recipes.last.measure,
+      'instruction': recipes.last.instruction,
+      'liked': recipes.length,
+    });
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -55,28 +70,13 @@ class _HomePageState extends State<HomePage> {
         home: DefaultTabController(
           length: 3,
           child: Scaffold(
-            bottomNavigationBar: BottomNavigationBar(
-              selectedItemColor: Colors.lightGreen,
-              unselectedItemColor: Colors.grey[500],
-              items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-            ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
             floatingActionButton: FloatingActionButton(
               onPressed: () async {
-                await getRequest();
-                setState((){});
+                setState(() {});
               },
               backgroundColor: Colors.lightGreen,
-              
               child: Icon(Icons.refresh),
             ),
             appBar: AppBar(
@@ -95,7 +95,6 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 )),
-            backgroundColor: Colors.white,
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: FutureBuilder(
@@ -109,7 +108,9 @@ class _HomePageState extends State<HomePage> {
                       RecipeIngredients(
                           ingredients: recipes.last.ingredients,
                           measures: recipes.last.measure),
-                      RecipeInstruction(instruction: recipes.last.instruction)
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(top: 10,bottom: 75),
+                        child: RecipeInstruction(instruction: recipes.last.instruction))
                     ]);
                   } else {
                     return Center(

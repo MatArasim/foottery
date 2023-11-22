@@ -17,7 +17,7 @@ class RecipeIngredients extends StatelessWidget {
         Expanded(
           flex: 1,
           child: ListView.builder(
-              padding: EdgeInsetsDirectional.symmetric(vertical: 5.0),
+              padding: EdgeInsetsDirectional.only(top: 10,bottom: 75),
               itemCount: ingredients.length,
               itemBuilder: (context, index) {
                 return IngredientTile(

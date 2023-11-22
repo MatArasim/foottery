@@ -10,24 +10,21 @@ class RecipeInstruction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.symmetric(vertical: 5.0),
-      child: Column(
-        children: [
-          Expanded(
-            flex: 1,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Text(
-                instruction,
-                style: GoogleFonts.nunito(
-                  fontSize: 18,
-                ),
+    return Column(
+      children: [
+        Expanded(
+          flex: 1,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Text(
+              instruction,
+              style: GoogleFonts.nunito(
+                fontSize: 18,
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }

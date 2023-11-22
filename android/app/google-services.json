@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "54693985639",
+    "project_id": "foottery",
+    "storage_bucket": "foottery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54693985639:android:23df7d722d3405096143c2",
+        "android_client_info": {
+          "package_name": "com.example.foottery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaAzwi_m-jfWe0cFawIpStfqm-xiNBwEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
