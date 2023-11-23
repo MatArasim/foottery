@@ -25,22 +25,29 @@ class HistoryListPage extends StatelessWidget {
     return history = recipiesData;
   }
 
+  signOutUser() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getUserHistory(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 5),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.lightGreen,
+          title: Text(
+        'History',
+        style: GoogleFonts.nunito(fontSize: 30),
+        textAlign: TextAlign.center,
+      ),
+        actions: [IconButton(onPressed: signOutUser, icon: Icon(Icons.logout))],
+      ),
+      body: FutureBuilder(
+        future: getUserHistory(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return SafeArea(
               child: Column(
                 children: [
-                  Text(
-                    'History',
-                    style: GoogleFonts.nunito(fontSize: 30),
-                    textAlign: TextAlign.center,
-                  ),
                   Expanded(
                       child: ListView.builder(
                           itemCount: history.length,
@@ -60,16 +67,16 @@ class HistoryListPage extends StatelessWidget {
                           }))
                 ],
               ),
-            ),
-          );
-        } else {
-          return Center(
-            child: CircularProgressIndicator(
-              color: Colors.lightGreen,
-            ),
-          );
-        }
-      },
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.lightGreen,
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

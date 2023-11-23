@@ -24,6 +24,7 @@ class SelectedRecipePage extends StatelessWidget {
             Container(
               decoration: BoxDecoration(color: Colors.lightGreen.shade400),
               child: TabBar(
+                labelColor: Colors.white,
                 indicatorColor: Colors.lightGreenAccent,
                 tabs: [
                   Tab(

@@ -33,7 +33,6 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     RecipePage(),
     HistoryListPage(),
-    LoginPage(),
   ];
 
   @override

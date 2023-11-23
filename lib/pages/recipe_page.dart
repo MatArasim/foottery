@@ -80,6 +80,7 @@ class _RecipePageState extends State<RecipePage> {
             appBar: AppBar(
                 backgroundColor: Colors.lightGreen,
                 title: TabBar(
+                  labelColor: Colors.white,
                   indicatorColor: Colors.lightGreenAccent,
                   tabs: [
                     Tab(
@@ -103,14 +104,14 @@ class _RecipePageState extends State<RecipePage> {
                       RecipeInfo(
                           name: recipes.last.name,
                           imgUrl: recipes.last.imgUrl.toString()),
-                      RecipeIngredients(
-                          ingredients: recipes.last.ingredients,
-                          measures: recipes.last.measure),
                       Padding(
                           padding:
                               EdgeInsetsDirectional.only(top: 10, bottom: 75),
                           child: RecipeInstruction(
-                              instruction: recipes.last.instruction))
+                              instruction: recipes.last.instruction)),
+                      RecipeIngredients(
+                          ingredients: recipes.last.ingredients,
+                          measures: recipes.last.measure),
                     ]);
                   } else {
                     return Center(
